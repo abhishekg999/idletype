@@ -17,10 +17,10 @@
 
 input[type='text'] {
   border: 0;
-  border-bottom: 1px solid grey;
   font-family: 'Invasion';
-  font-size: 40px;
+  font-size: 44px;
   background-color: rgba(0, 0, 0, 0);
+  color: white;
 }
 
 .form-control {
@@ -47,4 +47,3 @@ input[type='text'] {
   transition: color 0.15s ease, background-color 0.15s ease,
     border-color 0.15s ease, box-shadow 0.15s ease;
 }
-

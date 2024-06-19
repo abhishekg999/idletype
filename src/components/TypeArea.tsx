@@ -18,7 +18,6 @@ const keypressListener = (event: KeyboardEvent) => {
     }
 
     if (event.key.toLowerCase() === word.value[userWordIndex.value].toLowerCase()) {
-        console.log("Correct key pressed");
         userWordIndex.value++;
     }
 };

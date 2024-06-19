@@ -1,11 +1,11 @@
 import { computed, effect, signal } from "@preact/signals";
-
+import { randomWord } from "../lib/words.ts";
 /**
  * The current target word.
  * At anytime, there will be at most one target word.
  * This word will always be displayed in the TypeArea at all times.
  */
-export const word = signal<string>("MEOW")
+export const word = signal<string>(randomWord());
 
 /**
  * The length of the current target word.
@@ -26,7 +26,7 @@ export const userWordIndex = signal(0);
  * The overall running score. This will be incremented by 1 every time the user
  * types the word.
  */
-export const meowCount = signal(0);
+export const score = signal(0);
 
 
 /**
@@ -35,9 +35,9 @@ export const meowCount = signal(0);
 effect(() => {
     if (userWordIndex.value >= wordLength.value) {
         setTimeout(() => {
-            console.log("Word typed successfully!")
             userWordIndex.value = 0;
-            meowCount.value++;
+            word.value = randomWord();
+            score.value++;
         }, 100);
     }
 });
