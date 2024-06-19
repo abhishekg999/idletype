@@ -1,0 +1,50 @@
+.type-area {
+  width: 600px;
+  height: 200px;
+  margin: 0 auto;
+  background-color: rgba(255, 0, 0, 0.1);
+
+  margin-bottom: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.type-input {
+  background-color: rgba(160, 19, 19, 0);
+}
+
+input[type='text'] {
+  border: 0;
+  border-bottom: 1px solid grey;
+  font-family: 'Invasion';
+  font-size: 40px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.form-control {
+  -webkit-transition: none;
+  transition: none;
+  width: 64px;
+  height: 64px;
+  text-align: center;
+}
+
+.form-control:focus {
+  outline: 0;
+}
+
+.form-control.form-control-solid {
+  transition: color 0.15s ease, background-color 0.15s ease,
+    border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-control.form-control-solid:active,
+.form-control.form-control-solid.active,
+.form-control.form-control-solid:focus,
+.form-control.form-control-solid.focus {
+  transition: color 0.15s ease, background-color 0.15s ease,
+    border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
