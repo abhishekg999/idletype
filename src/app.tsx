@@ -9,7 +9,7 @@ export function App() {
                 <TypeArea />
 
                 <div class="upgrade-area" id="counter">
-                    <span>Words Typed: {score}</span>
+                    <span>Letters: {score}</span>
                 </div>
             </main>
         </>

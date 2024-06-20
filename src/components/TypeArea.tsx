@@ -18,7 +18,11 @@ const keypressListener = (event: KeyboardEvent) => {
     }
 
     if (event.key.toLowerCase() === word.value[userWordIndex.value].toLowerCase()) {
+        // Correct next character pressed
         userWordIndex.value++;
+    } else {
+        // Otherwise reset index to start of current word
+        userWordIndex.value = 0;
     }
 };
 
@@ -30,7 +34,6 @@ export function TypeArea() {
             window.removeEventListener('keypress', keypressListener);
         }
     });
-
 
 
     return (

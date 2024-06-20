@@ -23,22 +23,33 @@ export const wordLength = computed(() => word.value.length);
 export const userWordIndex = signal(0);
 
 /**
- * The overall running score. This will be incremented by 1 every time the user
- * types the word.
+ * The overall running score. This will be incremented by the number
+ * of letters the user has correctly typed. It only updates whenever
+ * a word is fully typed.
  */
-export const score = signal(0);
+export const score = signal(parseInt(localStorage.getItem("IdleType_score") ?? '0'));
 
 
 /**
- * This effect will reset the userWordIndex to 0 when the user has typed the entire word.
+ * Reset the userWordIndex to 0 when the user has typed the entire word.
  */
 effect(() => {
     if (userWordIndex.value >= wordLength.value) {
         setTimeout(() => {
             userWordIndex.value = 0;
+            score.value = score.value + word.peek().length;
             word.value = randomWord();
-            score.value++;
         }, 100);
     }
 });
+
+
+/**
+ * Save score locally whenever it updates.
+ */
+effect(() => {
+    window.localStorage.setItem("IdleType_score", score.value.toString());
+});
+
+
 
