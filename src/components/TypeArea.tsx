@@ -1,15 +1,19 @@
-import { useEffect } from "preact/hooks"
 import "./TypeArea.css"
 import { userWordIndex, word } from "../signals/WordSignal";
-
+import { useEffect } from "preact/hooks";
 
 /**
- * This function will be called every time a key is pressed.
- * When a key is pressed, check if the keycode matches 
- * the current character in the word. If it does, increment
- * the userWordIndex by 1.
+ * The keypressListener for the TypeArea. Since everything from the game
+ * to menu navigation is handled via only keypresses, we move 
+ * this out to the main app component.
  */
 const keypressListener = (event: KeyboardEvent) => {
+    // Propogate any "Special" key presses.
+    const modifiers = ['Alt', 'AltGraph', 'Control', 'Fn', 'Meta', 'OS'];
+    if (modifiers.map(mod => event.getModifierState(mod)).includes(true)) {
+        return;
+    }
+
     event.preventDefault();
 
     // This may only happen due to delay effect
@@ -17,7 +21,7 @@ const keypressListener = (event: KeyboardEvent) => {
         return;
     }
 
-    if (event.key.toLowerCase() === word.value[userWordIndex.value].toLowerCase()) {
+    if (event.key === word.value[userWordIndex.value]) {
         // Correct next character pressed
         userWordIndex.value++;
     } else {
@@ -29,18 +33,17 @@ const keypressListener = (event: KeyboardEvent) => {
 export function TypeArea() {
     // Initialize keypress listener on the entire page
     useEffect(() => {
-        window.addEventListener('keypress', keypressListener);
+        window.addEventListener('keydown', keypressListener);
         return () => {
-            window.removeEventListener('keypress', keypressListener);
+            window.removeEventListener('keydown', keypressListener);
         }
     });
-
 
     return (
         <div class="type-area" >
             <div class="type-input" id="type-input" >
                 {word.value.split('').map((letter, index) => (
-                    <input class="form-control form-control-solid"
+                    <input className="font-[Invasion] size-16 text-[44px] text-center text-white bg-transparent"
                         type="text"
                         id={`input-cell-${index}`}
                         maxlength={1}
